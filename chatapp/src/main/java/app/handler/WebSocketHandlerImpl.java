@@ -62,6 +62,7 @@ public class WebSocketHandlerImpl extends TextWebSocketHandler {
         session.sendMessage(message);
 
         Logger.green_write("HandleMessage method");
+        Logger.green_write(messageText);
 
 //        if (!sessions.containsKey(messageFromJson.getFrom())) {
 //            sessions.put(messageFromJson.getFrom(), session);

@@ -3,6 +3,7 @@ package app.controllers;
 import app.dto.AuthDto;
 //import app.services.AuthServiceImpl;
 import app.services.AuthServiceImpl;
+import app.services.CookiesServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +30,6 @@ public class RegistrationController {
 
     @PostMapping("/reg")
     public String register(HttpServletResponse response, @ModelAttribute AuthDto authDto) {
-
-        System.out.println(authDto.toString());
 
         response.addCookie(new Cookie("username", authDto.getUsername()));
         response.addCookie(new Cookie("password", authDto.getPassword()));

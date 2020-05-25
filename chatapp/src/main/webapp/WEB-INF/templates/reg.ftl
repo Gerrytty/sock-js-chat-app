@@ -9,6 +9,8 @@
 </head>
 <body>
 
+<h1>Registration</h1> <br>
+
 <form method="post" action="/reg">
 
     <input type="text" placeholder="username" name="username">

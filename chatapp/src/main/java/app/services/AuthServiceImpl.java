@@ -6,6 +6,8 @@ import app.repositories.ChatUsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthServiceImpl {
 
@@ -29,9 +31,23 @@ public class AuthServiceImpl {
     }
 
     // TODO add password hashing
-    public boolean auth(AuthDto authDto) {
-        return chatUsersRepository.findByUsername(authDto.getUsername())
-                .filter(chatUser -> authDto.getPassword().equals(chatUser.getPassword())).isPresent();
+    public Optional<ChatUser> auth(AuthDto authDto) {
+
+        Optional<ChatUser> optionalChatUser = chatUsersRepository.findByUsername(authDto.getUsername());
+
+        if(optionalChatUser.isPresent()) {
+            if(optionalChatUser.get().getPassword().equals(authDto.getPassword())) {
+                return optionalChatUser;
+            }
+
+            else {
+                return Optional.of(null);
+            }
+
+        }
+
+        return optionalChatUser;
+
     }
 
 }
