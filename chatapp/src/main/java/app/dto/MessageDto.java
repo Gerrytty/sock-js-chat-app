@@ -1,17 +1,16 @@
 package app.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AllDataAboutRoomDto {
+public class MessageDto {
 
-    private Long user_in_room_id;
-    private Long room_id;
+    private String text;
+    private String from;
+    private String room;
 
 }

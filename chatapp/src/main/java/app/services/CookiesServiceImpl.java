@@ -4,6 +4,7 @@ import app.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class CookiesServiceImpl {
@@ -32,6 +33,22 @@ public class CookiesServiceImpl {
         else {
             return true;
         }
+
+    }
+
+    public Long getUserId(HttpServletRequest request) {
+
+        Cookie[] cookies = request.getCookies();
+
+        String userId = "";
+
+        for (Cookie cookie : cookies) {
+            if(cookie.getName().equals("userId")) {
+                userId = cookie.getValue();
+            }
+        }
+
+        return Long.parseLong(userId);
 
     }
 }

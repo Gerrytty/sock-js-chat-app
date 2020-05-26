@@ -39,14 +39,10 @@ public class AuthController {
                        @ModelAttribute AuthDto authDto) {
 
         Logger.green_write("Post method AuthController");
-        System.out.println(authDto);
 
         if(!cookiesService.cookieIsExists(request.getCookies())) {
 
             Optional<ChatUser> chatUser = authService.auth(authDto);
-            System.out.println(authDto.getUsername());
-            System.out.println(authDto.getPassword());
-            System.out.println(chatUser);
 
             if(chatUser.isPresent()) {
                 response.addCookie(new Cookie("username", chatUser.get().getUsername()));

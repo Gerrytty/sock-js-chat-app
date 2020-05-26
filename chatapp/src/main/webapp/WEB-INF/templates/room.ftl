@@ -1,4 +1,4 @@
-<#--<!doctype html>-->
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,7 @@
         var sock = new SockJS('http://localhost:9999/ws');
 
         sock.onopen = function () {
+            sendMessage("Login",  ${userId}, ${room.roomId});
             console.log('connection opened');
         };
 
@@ -60,13 +61,32 @@
 </div>
 
 <div>
+    <h3>Send message</h3>
     <input id="message" placeholder="Input you'r message here">
     <button onclick="sendMessage($('#message').val(), ${userId}, ${room.roomId})">Send</button>
 </div>
+
+<div>
+    <h3>Messages</h3>
+</div>
+
 <div>
     <ul id="messagesList">
 
     </ul>
 </div>
+
+<div>
+
+    <#list messages as message>
+
+        <ul>
+            #{message.userId}: ${message.text}
+        </ul>
+
+    </#list>
+
+</div>
+
 </body>
 </html>
