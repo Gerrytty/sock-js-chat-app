@@ -16,7 +16,7 @@
         var sock = new SockJS('http://localhost:9999/ws');
 
         sock.onopen = function () {
-            sendMessage("Login",  ${userId}, ${room.roomId});
+            sendMessage("Login",  ${userId}, ${room.roomId}, "Login");
             console.log('connection opened');
         };
 
@@ -29,9 +29,10 @@
             console.log('connection closed');
         };
 
-        function sendMessage(text, from, room) {
+        function sendMessage(text, from, room, payload) {
 
             let message = {
+                "payload": payload,
                 "text": text,
                 "from": from, //user id
                 "room": room
@@ -63,7 +64,7 @@
 <div>
     <h3>Send message</h3>
     <input id="message" placeholder="Input you'r message here">
-    <button onclick="sendMessage($('#message').val(), ${userId}, ${room.roomId})">Send</button>
+    <button onclick="sendMessage($('#message').val(), ${userId}, ${room.roomId}, 'message')">Send</button>
 </div>
 
 <div>

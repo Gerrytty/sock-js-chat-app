@@ -36,10 +36,8 @@ public class WebSocketHandlerImpl extends TextWebSocketHandler {
         MessageDto messageFromJson = objectMapper.readValue(messageText, MessageDto.class);
         ChatDto chatDto = new ChatDto(messageFromJson.getFrom(), messageFromJson.getRoom());
 
-        if(messageFromJson.getText().equals("Login")) {
-
+        if(messageFromJson.getPayload().equals("Login")) {
             sessions.put(chatDto, session);
-
         }
 
         else {

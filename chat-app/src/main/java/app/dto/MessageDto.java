@@ -12,5 +12,5 @@ public class MessageDto {
     private String text;
     private String from;
     private String room;
-
+    private String payload;
 }
